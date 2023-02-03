@@ -12,21 +12,21 @@ app.get("/", async (req, res) => {
 
 app.get('/api', async (req, res) => {
     console.log("fetching response for first api")
-    const firstResponse = await axios.get('https://jsonplaceholder.typicode.com/posts');
-    const dataArray = firstResponse.data;
-    console.log(`response received for ${dataArray.length} items`)
+    const response = await axios.get('https://jsonplaceholder.typicode.com/posts');
+    const firstResponse = response.data;
+    console.log(`first response received for ${firstResponse.length} items`)
     const finalDataArray = [];
-    for (let i = 0; i < dataArray.length; i++) {
-        console.log("fetching response for second api")
-        const secondResponse = await axios.get(`https://jsonplaceholder.typicode.com/comments?postId=${dataArray[i].id}`);
-        //I only need the first data from array returned in second response
-        // Note: same properties will get override
-        const combinedData = { ...dataArray[i], ...secondResponse.data[0] };
-        finalDataArray.push(combinedData);
-        console.log("response received for second api. Final Data to write in csv", finalDataArray)
+    console.log("fetching response for second api")
+    const promisesArray = firstResponse.map(data => {
+        return axios.get(`https://jsonplaceholder.typicode.com/comments?postId=${data.id}`)
+    })
+    const results = await Promise.all(promisesArray);
+    console.log(`second response received for ${results.length} items`)
 
-    }
-
+    results.forEach((entry, index) => {
+        finalDataArray.push({ ...firstResponse[index], ...entry.data[0] })
+    })
+    console.log(`writing in csv file for ${finalDataArray.length} items`)
     const writer = csvWriter();
     writer.pipe(fs.createWriteStream('file.csv'));
     finalDataArray.forEach(data => {
