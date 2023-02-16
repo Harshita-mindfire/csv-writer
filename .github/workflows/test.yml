@@ -22,6 +22,7 @@ jobs:
       - name: Check if dev-release branch exists
         run: |
           if git rev-parse --verify dev-release >/dev/null 2>&1; then
+            git fetch
             git checkout dev-release
             git merge --ff-only main
           else
