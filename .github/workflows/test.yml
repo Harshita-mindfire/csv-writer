@@ -28,7 +28,7 @@ jobs:
           if git rev-parse --verify --quiet origin/dev-release
           then
             echo "in if"
-            git checkout dev-release
+            git checkout origin/dev-release
             git merge --ff-only main
           else
             echo "in else"
