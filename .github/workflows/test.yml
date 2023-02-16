@@ -21,7 +21,7 @@ jobs:
 
       - name: Check if dev-release branch exists
         run: |
-          if git show-ref --quiet refs/heads/dev-release; then
+          if git rev-parse --verify --quiet dev-release; then
             echo "in if"
             git fetch
             git checkout dev-release
