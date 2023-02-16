@@ -28,8 +28,8 @@ jobs:
           if git rev-parse --verify --quiet origin/dev-release
           then
             echo "in if"
-            git checkout dev-release
-            git pull --rebase origin main
+            git push origin -d dev-release
+            git checkout -b dev-release
           else
             echo "in else"
             git checkout -b dev-release
