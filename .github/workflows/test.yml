@@ -14,6 +14,11 @@ jobs:
         with:
           ref: main
 
+      - name: Configure Git user
+        run: |
+          git config --global user.name github-actions
+          git config --global user.email github-actions@github.com
+
       - name: Check if dev-release branch exists
         run: |
           if git rev-parse --verify dev-release >/dev/null 2>&1; then
