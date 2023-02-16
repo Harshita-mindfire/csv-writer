@@ -29,11 +29,8 @@ jobs:
           then
             echo "in if"
             git push origin -d dev-release
-            git checkout -b dev-release
-          else
-            echo "in else"
-            git checkout -b dev-release
           fi
+          git checkout -b dev-release
 
       - name: Modify manifest.json file
         run: |
