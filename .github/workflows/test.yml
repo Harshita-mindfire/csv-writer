@@ -37,11 +37,11 @@ jobs:
 
           # Replace the name of the extension
           sed -i "s/\"name\": \".*\"/\"name\": \"Dendron.Dev\"/" manifest.json
-          git add manifest.json
           # Update the icon filenames
           sed -i 's/"72.png"/"72_dev.png"/' manifest.json
           sed -i 's/"128.png"/"128_dev.png"/' manifest.json
           # Commit the changes with a custom message
+          git add manifest.json
           git commit -m "update extension name and icon in manifest.json"
 
       - name: Push changes to dev-release branch
