@@ -5,5 +5,10 @@
     "manifest_version": 3,
     "action": {
         "default_title": "Dendron"
+    },
+    "icons": {
+        "32": "icons/32.png",
+        "72": "icons/72.png",
+        "128": "icons/128.png"
     }
 }
