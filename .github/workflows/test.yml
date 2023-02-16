@@ -19,17 +19,17 @@ jobs:
           git config --global user.name github-actions
           git config --global user.email github-actions@github.com
 
-      - name: Pull main
+      - name: Fetch main
         run: | 
-          git pull
+          git fetch
 
       - name: Check if dev-release branch exists
         run: |
           if git rev-parse --verify --quiet origin/dev-release
           then
             echo "in if"
-            git checkout origin/dev-release
-            git merge --ff-only main
+            git checkout dev-release
+            git pull --rebase origin main
           else
             echo "in else"
             git checkout -b dev-release
