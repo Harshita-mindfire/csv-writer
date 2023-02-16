@@ -35,7 +35,7 @@ jobs:
           sed -i "s/\"name\": \".*\"/\"name\": \"Dendron.Dev\"/" manifest.json
           git add manifest.json
           # Commit the changes with a custom message
-          git commit -m "Update name field in manifest.json"
+          git commit -m "update extension name in manifest.json"
 
       - name: Push changes to dev-release branch
         run: git push --force-with-lease origin dev-release
