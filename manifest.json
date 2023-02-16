@@ -1,0 +1,9 @@
+{
+    "name": "Test",
+    "description": "Test json file",
+    "version": "0.1.0",
+    "manifest_version": 3,
+    "action": {
+        "default_title": "Dendron"
+    }
+}

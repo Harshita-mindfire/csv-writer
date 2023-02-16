@@ -1,0 +1,36 @@
+name: Update Dev Release Branch
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  update-dev-release-branch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main branch
+        uses: actions/checkout@v2
+        with:
+          ref: main
+
+      - name: Check if dev-release branch exists
+        run: |
+          if git rev-parse --verify dev-release >/dev/null 2>&1; then
+            git checkout dev-release
+            git merge --ff-only main
+          else
+            git checkout -b dev-release
+          fi
+
+      - name: Modify manifest.json file
+        run: |
+
+          # Replace the name of the extension
+          sed -i "s/\"name\": \".*\"/\"name\": \"Dendron.Dev\"/" manifest.json
+          git add manifest.json
+          # Commit the changes with a custom message
+          git commit -m "Update name field in manifest.json"
+
+      - name: Push changes to dev-release branch
+        run: git push --force-with-lease origin dev-release
