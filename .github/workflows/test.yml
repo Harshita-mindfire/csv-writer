@@ -25,7 +25,7 @@ jobs:
 
       - name: Check if dev-release branch exists
         run: |
-          if git rev-parse --verify --quiet dev-release
+          if git rev-parse --verify --quiet origin/dev-release
           then
             echo "in if"
             git checkout dev-release
