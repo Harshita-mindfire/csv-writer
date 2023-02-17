@@ -19,9 +19,9 @@ jobs:
           git config --global user.name github-actions
           git config --global user.email github-actions@github.com
 
-      - name: Fetch main
+      - name: Pull main
         run: | 
-          git fetch
+          git pull
 
       - name: Check if dev-release branch exists
         run: |
