@@ -27,7 +27,6 @@ jobs:
         run: |
           if git rev-parse --verify --quiet origin/dev-release
           then
-            echo "in if"
             git push origin -d dev-release
           fi
           git checkout -b dev-release
@@ -37,6 +36,7 @@ jobs:
 
           # Replace the name of the extension
           sed -i "s/\"name\": \".*\"/\"name\": \"Dendron.Dev\"/" manifest.json
+          sed -i 's/"default_title": ".*"/"default_title": "Dendron.dev"/' manifest.json    
           # Update the icon filenames
           sed -i 's/"72": "icons\/72.png"/"72": "icons\/72_dev.png"/' manifest.json
           sed -i 's/"128": "icons\/128.png"/"128": "icons\/128_dev.png"/' manifest.json
