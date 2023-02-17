@@ -11,8 +11,6 @@ jobs:
     steps:
       - name: Checkout main branch
         uses: actions/checkout@v2
-        with:
-          ref: main
 
       - name: Configure Git user
         run: |
@@ -34,7 +32,6 @@ jobs:
       - name: Modify manifest.json file
         run: |
 
-          echo ${cwd}
           # Replace the name of the extension
           sed -i "s/\"name\": \".*\"/\"name\": \"Dendron.Dev\"/" packages/dendron-web-extension/manifest.json
 
