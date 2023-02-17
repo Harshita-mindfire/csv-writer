@@ -36,7 +36,7 @@ jobs:
           sed -i "s/\"name\": \".*\"/\"name\": \"Dendron.Dev\"/" packages/dendron-web-extension/manifest.json
 
           # Commit the changes with a custom message
-          git add manifest.json
+          git add packages/dendron-web-extension/manifest.json
           git commit -m "update extension name and icon in manifest.json"
 
       - name: Push changes to dev-release branch
