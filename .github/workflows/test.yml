@@ -34,8 +34,9 @@ jobs:
       - name: Modify manifest.json file
         run: |
 
+          echo ${cwd}
           # Replace the name of the extension
-          sed -i "s/\"name\": \".*\"/\"name\": \"Dendron.Dev\"/" ../../packages/dendron-web-extension/manifest.json
+          sed -i "s/\"name\": \".*\"/\"name\": \"Dendron.Dev\"/" packages/dendron-web-extension/manifest.json
 
           # Commit the changes with a custom message
           git add manifest.json
